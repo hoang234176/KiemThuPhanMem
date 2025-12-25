@@ -51,14 +51,14 @@ class LoginCredentials {
 
 // ==================== TEST DATA CLASS ====================
 class LoginTestData {
-    // Mảng dữ liệu test
+    // Mang du lieu test
     public static LoginCredentials[] getLoginTestData() {
         return new LoginCredentials[] {
-                // TC1: Không có email và mật khẩu
+                // TC1: Khong co email va mat khau
                 new LoginCredentials("", ""),
-                // TC2: Không nhập email nhưng nhập password '111111'
+                // TC2: Khong nhap email nhung nhap password '111111'
                 new LoginCredentials("", "111111"),
-                // TC3: nhập email (kkk123kkk@gmail.com) và để trống password
+                // TC3: nhap email (kkk123kkk@gmail.com) va de trong password
                 new LoginCredentials("kkk123kkk@gmail.com", "")
         };
     }
@@ -91,22 +91,22 @@ public class LoginTest {
 
         for (int i = 0; i < testDataArray.length; i++) {
             LoginCredentials credentials = testDataArray[i];
-            System.out.println("\n--- TC1: Không có email và mật khẩu ---");
-            System.out.println("Dữ liệu test: " + credentials);
+            System.out.println("\n--- TC1: Khong co email va mat khau ---");
+            System.out.println("Du lieu test: " + credentials);
             performLogin(credentials.getEmail(), credentials.getPassword());
 
-            // Kiểm tra thông báo validation: Warning: Please enter all information
+            // Kiem tra thong bao validation: Warning: Please enter all information
             // completely.
             try {
                 WebElement alert = wait
                         .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
                 String alertText = alert.getText();
-                System.out.println("Alert text: " + alertText);
+                System.out.println("Noi dung alert: " + alertText);
                 String expectedMessage = "Warning: Please enter all information completely.";
                 Assert.assertTrue("Alert should contain expected message", alertText.contains(expectedMessage));
-                System.out.println("Kết quả: PASS (alert chứa: Warning: Please enter all information completely.)");
+                System.out.println("Ket qua: PASS (alert chua: Warning: Please enter all information completely.)");
             } catch (Exception e) {
-                System.out.println("Kết quả: FAIL - alert không xuất hiện hoặc khác nội dung: " + e.getMessage());
+                System.out.println("Ket qua: FAIL - alert khong xuat hien hoac khac noi dung: " + e.getMessage());
                 Assert.fail("Alert not found or text mismatch for TC1: " + e.getMessage());
             }
         }
@@ -118,22 +118,22 @@ public class LoginTest {
 
         for (int i = 0; i < testDataArray.length; i++) {
             LoginCredentials credentials = testDataArray[i];
-            System.out.println("\n--- TC2: Không nhập email, nhập password '111111' ---");
-            System.out.println("Dữ liệu test: " + credentials);
+            System.out.println("\n--- TC2: Khong nhap email, nhap password '111111' ---");
+            System.out.println("Du lieu test: " + credentials);
             performLogin(credentials.getEmail(), credentials.getPassword());
 
-            // Kiểm tra thông báo validation: Warning: Please enter all information
+            // Kiem tra thong bao validation: Warning: Please enter all information
             // completely.
             try {
                 WebElement alert = wait
                         .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
                 String alertText = alert.getText();
-                System.out.println("Alert text: " + alertText);
+                System.out.println("Noi dung alert: " + alertText);
                 String expectedMessage = "Warning: Please enter all information completely.";
                 Assert.assertTrue("Alert should contain expected message", alertText.contains(expectedMessage));
-                System.out.println("Kết quả: PASS (alert chứa: Warning: Please enter all information completely.)");
+                System.out.println("Ket qua: PASS (alert chua: Warning: Please enter all information completely.)");
             } catch (Exception e) {
-                System.out.println("Kết quả: FAIL - alert không xuất hiện hoặc khác nội dung: " + e.getMessage());
+                System.out.println("Ket qua: FAIL - alert khong xuat hien hoac khac noi dung: " + e.getMessage());
                 Assert.fail("Alert not found or text mismatch for TC2: " + e.getMessage());
             }
         }
@@ -145,22 +145,22 @@ public class LoginTest {
 
         for (int i = 0; i < testDataArray.length; i++) {
             LoginCredentials credentials = testDataArray[i];
-            System.out.println("\n--- TC3: Nhập email, để trống password ---");
-            System.out.println("Dữ liệu test: " + credentials);
+            System.out.println("\n--- TC3: Nhap email, de trong password ---");
+            System.out.println("Du lieu test: " + credentials);
             performLogin(credentials.getEmail(), credentials.getPassword());
 
-            // Kiểm tra thông báo validation: Warning: Please enter all information
+            // Kiem tra thong bao validation: Warning: Please enter all information
             // completely.
             try {
                 WebElement alert = wait
                         .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
                 String alertText = alert.getText();
-                System.out.println("Alert text: " + alertText);
+                System.out.println("Noi dung alert: " + alertText);
                 String expectedMessage = "Warning: Please enter all information completely.";
                 Assert.assertTrue("Alert should contain expected message", alertText.contains(expectedMessage));
-                System.out.println("Kết quả: PASS (alert chứa: Warning: Please enter all information completely.)");
+                System.out.println("Ket qua: PASS (alert chua: Warning: Please enter all information completely.)");
             } catch (Exception e) {
-                System.out.println("Kết quả: FAIL - alert không xuất hiện hoặc khác nội dung: " + e.getMessage());
+                System.out.println("Ket qua: FAIL - alert khong xuat hien hoac khac noi dung: " + e.getMessage());
                 Assert.fail("Alert not found or text mismatch for TC3: " + e.getMessage());
             }
         }
@@ -174,12 +174,12 @@ public class LoginTest {
             WebElement alert = wait
                     .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
             String alertText = alert.getText();
-            System.out.println("Alert text: " + alertText);
+            System.out.println("Noi dung alert: " + alertText);
             String expected = "Warning: No match for E-Mail Address and/or Password.";
             Assert.assertTrue("TC4 should show No match warning", alertText.contains(expected));
-            System.out.println("Kết quả: PASS (TC4 shows No match warning)");
+            System.out.println("Ket qua: PASS (TC4 shows No match warning)");
         } catch (Exception e) {
-            System.out.println("Kết quả: FAIL (TC4) - " + e.getMessage());
+            System.out.println("Ket qua: FAIL (TC4) - " + e.getMessage());
             Assert.fail("Alert not found or text mismatch for TC4: " + e.getMessage());
         }
     }
@@ -192,12 +192,12 @@ public class LoginTest {
             WebElement alert = wait
                     .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
             String alertText = alert.getText();
-            System.out.println("Alert text: " + alertText);
+            System.out.println("Noi dung alert: " + alertText);
             String expected = "Warning: No match for E-Mail Address and/or Password.";
             Assert.assertTrue("TC5 should show No match warning", alertText.contains(expected));
-            System.out.println("Kết quả: PASS (TC5 shows No match warning)");
+            System.out.println("Ket qua: PASS (TC5 shows No match warning)");
         } catch (Exception e) {
-            System.out.println("Kết quả: FAIL (TC5) - " + e.getMessage());
+            System.out.println("Ket qua: FAIL (TC5) - " + e.getMessage());
             Assert.fail("Alert not found or text mismatch for TC5: " + e.getMessage());
         }
     }
@@ -210,12 +210,12 @@ public class LoginTest {
             WebElement alert = wait
                     .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
             String alertText = alert.getText();
-            System.out.println("Alert text: " + alertText);
+            System.out.println("Noi dung alert: " + alertText);
             String expected = "Warning: No match for E-Mail Address and/or Password.";
             Assert.assertTrue("TC6 should show No match warning", alertText.contains(expected));
-            System.out.println("Kết quả: PASS (TC6 shows No match warning)");
+            System.out.println("Ket qua: PASS (TC6 shows No match warning)");
         } catch (Exception e) {
-            System.out.println("Kết quả: FAIL (TC6) - " + e.getMessage());
+            System.out.println("Ket qua: FAIL (TC6) - " + e.getMessage());
             Assert.fail("Alert not found or text mismatch for TC6: " + e.getMessage());
         }
     }
@@ -225,37 +225,37 @@ public class LoginTest {
         System.out.println("\n--- TC7: kkk123kkk@gmail.com / 111111 ---");
         performLogin("kkk123kkk@gmail.com", "111111");
         try {
-            // đợi chuyển trang tới account page
+            // doi chuyen trang toi account page
             wait.until(ExpectedConditions.urlContains("route=account/account"));
             String current = driver.getCurrentUrl();
             System.out.println("Current URL: " + current);
             Assert.assertTrue("TC7 should redirect to account page", current.contains("route=account/account"));
-            System.out.println("Kết quả: PASS (TC7 redirected to account page)");
+            System.out.println("Ket qua: PASS (TC7 redirected to account page)");
         } catch (Exception e) {
-            System.out.println("Kết quả: FAIL (TC7) - " + e.getMessage());
+            System.out.println("Ket qua: FAIL (TC7) - " + e.getMessage());
             Assert.fail("Did not redirect to account page for TC7: " + e.getMessage());
         }
     }
 
-    // Method helper để thực hiện login
+    // Method helper de thuc hien login
     private void performLogin(String email, String password) {
         try {
-            // Nhập email
+            // Nhap email
             WebElement emailInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("input-email")));
             emailInput.clear();
             emailInput.sendKeys(email);
 
-            // Nhập password
+            // Nhap password
             WebElement passwordInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("input-password")));
             passwordInput.clear();
             passwordInput.sendKeys(password);
 
-            // Gửi phím ENTER thay vì click nút Login (nút không có id)
+            // Gui phim ENTER thay vi click nut Login (nut khong co id)
             passwordInput.sendKeys(Keys.ENTER);
 
             Thread.sleep(2000);
         } catch (Exception e) {
-            System.out.println("Lỗi: " + e.getMessage());
+            System.out.println("Loi: " + e.getMessage());
         }
     }
 }
