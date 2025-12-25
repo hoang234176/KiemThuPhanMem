@@ -103,11 +103,11 @@ public class LoginTest {
                 String alertText = alert.getText();
                 System.out.println("Noi dung alert: " + alertText);
                 String expectedMessage = "Warning: Please enter all information completely.";
-                Assert.assertTrue("Alert should contain expected message", alertText.contains(expectedMessage));
+                Assert.assertTrue("Alert phai chua thong bao", alertText.contains(expectedMessage));
                 System.out.println("Ket qua: PASS (alert chua: Warning: Please enter all information completely.)");
             } catch (Exception e) {
                 System.out.println("Ket qua: FAIL - alert khong xuat hien hoac khac noi dung: " + e.getMessage());
-                Assert.fail("Alert not found or text mismatch for TC1: " + e.getMessage());
+                Assert.fail("Alert khong tim thay hoac noi dung khong trung khop cho TC1: " + e.getMessage());
             }
         }
     }
@@ -130,11 +130,11 @@ public class LoginTest {
                 String alertText = alert.getText();
                 System.out.println("Noi dung alert: " + alertText);
                 String expectedMessage = "Warning: Please enter all information completely.";
-                Assert.assertTrue("Alert should contain expected message", alertText.contains(expectedMessage));
+                Assert.assertTrue("Alert phai chua thong bao", alertText.contains(expectedMessage));
                 System.out.println("Ket qua: PASS (alert chua: Warning: Please enter all information completely.)");
             } catch (Exception e) {
                 System.out.println("Ket qua: FAIL - alert khong xuat hien hoac khac noi dung: " + e.getMessage());
-                Assert.fail("Alert not found or text mismatch for TC2: " + e.getMessage());
+                Assert.fail("Alert khong tim thay hoac noi dung khong trung khop cho TC2: " + e.getMessage());
             }
         }
     }
@@ -149,56 +149,54 @@ public class LoginTest {
             System.out.println("Du lieu test: " + credentials);
             performLogin(credentials.getEmail(), credentials.getPassword());
 
-            // Kiem tra thong bao validation: Warning: Please enter all information
-            // completely.
             try {
                 WebElement alert = wait
                         .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
                 String alertText = alert.getText();
                 System.out.println("Noi dung alert: " + alertText);
                 String expectedMessage = "Warning: Please enter all information completely.";
-                Assert.assertTrue("Alert should contain expected message", alertText.contains(expectedMessage));
+                Assert.assertTrue("Alert phai chua thong bao", alertText.contains(expectedMessage));
                 System.out.println("Ket qua: PASS (alert chua: Warning: Please enter all information completely.)");
             } catch (Exception e) {
                 System.out.println("Ket qua: FAIL - alert khong xuat hien hoac khac noi dung: " + e.getMessage());
-                Assert.fail("Alert not found or text mismatch for TC3: " + e.getMessage());
+                Assert.fail("Alert khong tim thay hoac noi dung khong trung khop cho TC3: " + e.getMessage());
             }
         }
     }
 
     @Test
     public void TestCase4() {
-        System.out.println("\n--- TC4: 1@gmail.com / 121212 ---");
-        performLogin("1@gmail.com", "121212");
+        System.out.println("\n--- TC4: 2@gmail.com / 121212 ---");
+        performLogin("2@gmail.com", "121212");
         try {
             WebElement alert = wait
                     .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
             String alertText = alert.getText();
             System.out.println("Noi dung alert: " + alertText);
             String expected = "Warning: No match for E-Mail Address and/or Password.";
-            Assert.assertTrue("TC4 should show No match warning", alertText.contains(expected));
-            System.out.println("Ket qua: PASS (TC4 shows No match warning)");
+            Assert.assertTrue("TC4 phai hien thi canh bao khong khop", alertText.contains(expected));
+            System.out.println("Ket qua: PASS (TC4 hien thi canh bao khong khop)");
         } catch (Exception e) {
             System.out.println("Ket qua: FAIL (TC4) - " + e.getMessage());
-            Assert.fail("Alert not found or text mismatch for TC4: " + e.getMessage());
+            Assert.fail("Alert khong tim thay hoac noi dung khong trung khop cho TC4: " + e.getMessage());
         }
     }
 
     @Test
     public void TestCase5() {
-        System.out.println("\n--- TC5: 1@gmail.com / 111111 ---");
-        performLogin("1@gmail.com", "111111");
+        System.out.println("\n--- TC5: 2@gmail.com / 111111 ---");
+        performLogin("2@gmail.com", "111111");
         try {
             WebElement alert = wait
                     .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert.alert-danger")));
             String alertText = alert.getText();
             System.out.println("Noi dung alert: " + alertText);
             String expected = "Warning: No match for E-Mail Address and/or Password.";
-            Assert.assertTrue("TC5 should show No match warning", alertText.contains(expected));
-            System.out.println("Ket qua: PASS (TC5 shows No match warning)");
+            Assert.assertTrue("TC5 phai hien thi canh bao khong khop", alertText.contains(expected));
+            System.out.println("Ket qua: PASS (TC5 hien thi canh bao khong khop)");
         } catch (Exception e) {
             System.out.println("Ket qua: FAIL (TC5) - " + e.getMessage());
-            Assert.fail("Alert not found or text mismatch for TC5: " + e.getMessage());
+            Assert.fail("Alert khong tim thay hoac noi dung khong trung khop cho TC5: " + e.getMessage());
         }
     }
 
@@ -212,11 +210,11 @@ public class LoginTest {
             String alertText = alert.getText();
             System.out.println("Noi dung alert: " + alertText);
             String expected = "Warning: No match for E-Mail Address and/or Password.";
-            Assert.assertTrue("TC6 should show No match warning", alertText.contains(expected));
-            System.out.println("Ket qua: PASS (TC6 shows No match warning)");
+            Assert.assertTrue("TC6 phai hien thi canh bao khong khop", alertText.contains(expected));
+            System.out.println("Ket qua: PASS (TC6 hien thi canh bao khong khop)");
         } catch (Exception e) {
             System.out.println("Ket qua: FAIL (TC6) - " + e.getMessage());
-            Assert.fail("Alert not found or text mismatch for TC6: " + e.getMessage());
+            Assert.fail("Alert khong tim thay hoac noi dung khong trung khop cho TC6: " + e.getMessage());
         }
     }
 
@@ -229,11 +227,11 @@ public class LoginTest {
             wait.until(ExpectedConditions.urlContains("route=account/account"));
             String current = driver.getCurrentUrl();
             System.out.println("Current URL: " + current);
-            Assert.assertTrue("TC7 should redirect to account page", current.contains("route=account/account"));
-            System.out.println("Ket qua: PASS (TC7 redirected to account page)");
+            Assert.assertTrue("TC7 phai chuyen huong toi account page", current.contains("route=account/account"));
+            System.out.println("Ket qua: PASS (TC7 chuyen huong toi account page)");
         } catch (Exception e) {
             System.out.println("Ket qua: FAIL (TC7) - " + e.getMessage());
-            Assert.fail("Did not redirect to account page for TC7: " + e.getMessage());
+            Assert.fail("Khong chuyen huong toi account page cho TC7: " + e.getMessage());
         }
     }
 

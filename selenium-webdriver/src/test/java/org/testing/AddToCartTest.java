@@ -3,6 +3,7 @@ package org.testing;
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,7 +39,11 @@ public class AddToCartTest {
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get(BASE_URL);
@@ -49,35 +54,45 @@ public class AddToCartTest {
     private void login() {
         wait.until(ExpectedConditions.elementToBeClickable(MY_ACCOUNT)).click();
         wait.until(ExpectedConditions.elementToBeClickable(LOGIN_LINK)).click();
+        System.out.println("Dang nhap voi tai khoan " + EMAIL);
         wait.until(ExpectedConditions.visibilityOfElementLocated(EMAIL_INPUT)).sendKeys(EMAIL);
         driver.findElement(PASSWORD_INPUT).sendKeys(PASSWORD);
         driver.findElement(LOGIN_BUTTON).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_LINK));
+        System.out.println("Thong bao dang nhap thanh cong");
         driver.get(BASE_URL);
     }
 
     private void openMacBook() {
+        System.out.println("--- Mo trang san pham MacBook ---");
         WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_INPUT));
         search.clear();
+        System.out.println("Nhap 'MacBook' vao o tim kiem");
         search.sendKeys("MacBook");
         driver.findElement(SEARCH_BUTTON).click();
+        System.out.println("Click vao san pham MacBook tu ket qua");
         wait.until(ExpectedConditions.elementToBeClickable(PRODUCT_MACBOOK)).click();
     }
 
     private String addToCartAndGetAlert(int quantity) {
         WebElement qty = wait.until(ExpectedConditions.visibilityOfElementLocated(QUANTITY_INPUT));
         qty.clear();
+        System.out.println("Nhap so luong: " + quantity);
         qty.sendKeys(String.valueOf(quantity));
+        System.out.println("Click nut them vao gio hang");
         driver.findElement(ADD_TO_CART_BUTTON).click();
 
         WebElement alert = wait.until(ExpectedConditions.visibilityOfElementLocated(HTML_ALERT));
-        return alert.getText().toLowerCase();
+        String alertText = alert.getText().toLowerCase();
+        System.out.println("Thong bao hien thi: " + alertText);
+        return alertText;
     }
 
     // =================== TEST CASES ===================
 
     @Test
     public void TC01_NotLogin_InvalidQuantity() {
+        System.out.println("--- Chay TC01: Khong dang nhap - So luong khong hop le ---");
         openMacBook();
         String alert = addToCartAndGetAlert(0);
         Assert.assertTrue("Expected login alert",
@@ -86,6 +101,7 @@ public class AddToCartTest {
 
     @Test
     public void TC02_NotLogin_ValidQuantity() {
+        System.out.println("--- Chay TC02: Khong dang nhap - So luong hop le ---");
         openMacBook();
         String alert = addToCartAndGetAlert(1);
         Assert.assertTrue("Expected login alert",
@@ -94,6 +110,7 @@ public class AddToCartTest {
 
     @Test
     public void TC05_Login_InvalidQuantity() {
+        System.out.println("--- Chay TC05: Da dang nhap - So luong khong hop le ---");
         login();
         openMacBook();
         String alert = addToCartAndGetAlert(0);
@@ -103,6 +120,7 @@ public class AddToCartTest {
 
     @Test
     public void TC07_Login_QuantityExceedStock() {
+        System.out.println("--- Chay TC07: Da dang nhap - So luong vuot qua ton kho ---");
         login();
         openMacBook();
         String alert = addToCartAndGetAlert(999);
@@ -112,6 +130,7 @@ public class AddToCartTest {
 
     @Test
     public void TC08_Login_ValidQuantity() {
+        System.out.println("--- Chay TC08: Da dang nhap - So luong hop le ---");
         login();
         openMacBook();
         String alert = addToCartAndGetAlert(1);
